@@ -11,7 +11,7 @@ function Sidebar({ overrideVisibility = false }) {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/app/logout",
+        "https://eat-right-server.onrender.com/app/logout",
         {},
         { withCredentials: true }
       );

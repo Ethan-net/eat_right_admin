@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function AddtoMenu() {
-  const postURL = "http://localhost:5000/app/add_tomenu";
+  const postURL = "https://eat-right-server.onrender.com/app/add_tomenu";
 
   const [posted, setPosted] = useState({
     name: "",

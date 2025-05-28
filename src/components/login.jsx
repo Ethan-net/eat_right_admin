@@ -12,7 +12,7 @@ export default function Login() {
   });
   const [loading, setLoading] = useState(false);
 
-  const LoginUrl = "http://localhost:5000/app/signIn";
+  const LoginUrl = "https://eat-right-server.onrender.com/app/signIn";
 
   const handleLogin = async (e) => {
     e.preventDefault();
