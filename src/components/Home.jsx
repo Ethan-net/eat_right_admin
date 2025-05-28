@@ -21,11 +21,14 @@ export default function Home() {
   useEffect(() => {
     const getMenuItem = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/app/getitems", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          "https://eat-right-server.onrender.com/app/getitems",
+          {
+            withCredentials: true,
+          }
+        );
         const itemsData = response.data.Item;
-        
+
         setMenuItem(itemsData);
       } catch (error) {
         console.log(error);
