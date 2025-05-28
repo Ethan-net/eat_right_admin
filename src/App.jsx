@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Login from "./components/login";
+import Home from "./components/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ContextProvider from "./context/ContextProvider";
+import { PrivateRoute } from "./components/ProtectedRoute";
+import AddtoMenu from "./pages/AddToMenu";
+import Sidebar from "./components/Sidebar";
+import Analyticts from "./components/Analyticts";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ContextProvider>
+      <BrowserRouter>
+        {/* <PrivateRoute>
+          <Sidebar />
+        </PrivateRoute> */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add_to_menu"
+            element={
+              <PrivateRoute>
+                {" "}
+                <AddtoMenu />{" "}
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="/Login" element={<Login />} />
+
+          <Route
+            path="/Analytics"
+            element={
+              <PrivateRoute>
+                <Analyticts />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
+  );
 }
 
-export default App
+export default App;
