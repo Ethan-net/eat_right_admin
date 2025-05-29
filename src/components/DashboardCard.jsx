@@ -41,7 +41,7 @@ export const StatCards = () => {
   ];
 
   return (
-    <div className="grid grid-cols-12 gap-5 mt-5 pt-20 w-[85vw] mx-auto ">
+    <div className="grid grid-cols-12 gap-5  pt-20 w-[80vw] mx-auto ">
       {cards.map((card, index) => (
         <a
           key={index}

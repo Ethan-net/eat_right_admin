@@ -55,7 +55,7 @@ export default function Home() {
   };
 
   return (
-    <div className="  bg-zinc-800 h-screen">
+    <div className="  bg-zinc-800 h-screen ">
       <Sidebar />
       <StatCards />
       <header className="absolute inset-x-0 top-0 z-50">
@@ -138,7 +138,7 @@ export default function Home() {
 
       {/* // Table to display Items */}
 
-      <div className="bg-white p-4 shadow w-[85vw] mx-auto rounded">
+      <div className="bg-white p-4 shadow w-[80vw] mx-auto rounded">
         <h2 className="text-lg font-bold mb-4">Food and Items For Order</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">

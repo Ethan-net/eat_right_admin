@@ -28,8 +28,7 @@ function App() {
             path="/add_to_menu"
             element={
               <PrivateRoute>
-                {" "}
-                <AddtoMenu />{" "}
+                <AddtoMenu />
               </PrivateRoute>
             }
           />

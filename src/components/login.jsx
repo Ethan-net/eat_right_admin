@@ -26,6 +26,9 @@ export default function Login() {
     try {
       const response = await axios.post(LoginUrl, loginPayload, {
         withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       alert("You have successfully signed in");
       setAdmin(response.data.user);
