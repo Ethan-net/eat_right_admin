@@ -33,10 +33,6 @@ export default function AddtoMenu() {
       setLoader(true);
       const response = await axios.post(postURL, formData, {
         withCredentials: true,
-
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
 
       setMessage(response.data.message);
