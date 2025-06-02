@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function AddtoMenu() {
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const postURL = "https://eat-right-server.onrender.com/app/add_tomenu";
 
   const [posted, setPosted] = useState({
@@ -28,9 +30,11 @@ export default function AddtoMenu() {
       const response = await axios.post(postURL, formData, {
         withCredentials: true,
       });
-      console.log(response.data);
+      setMessage(response.message || "posted successfully");
+      console.log(response.message);
     } catch (error) {
       console.log("Full error:", error);
+      setErrorMessage(error.message || "Error posting");
       console.log("Error response data:", error.response?.data);
     }
   };
@@ -185,6 +189,8 @@ export default function AddtoMenu() {
           >
             Post Item
           </button>
+          {setMessage && <p>{message}</p>}
+          {setErrorMessage && <p className="text-red-500">{errorMessage}</p>}
         </div>
       </form>
     </div>
