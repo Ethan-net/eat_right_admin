@@ -2,11 +2,14 @@ import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
 import axios from "axios";
+import loading from "../assets/loading.png";
 
 export default function AddtoMenu() {
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const postURL = "https://eat-right-server.onrender.com/app/add_tomenu";
+  const [loader, setLoader] = useState(false);
+  // const postURL = "https://eat-right-server.onrender.com/app/add_tomenu";
+  const postURL = "http://localhost:5000/app/add_tomenu";
 
   const [posted, setPosted] = useState({
     name: "",
@@ -27,15 +30,21 @@ export default function AddtoMenu() {
     formData.append("available", posted.available);
 
     try {
+      setLoader(true);
       const response = await axios.post(postURL, formData, {
         withCredentials: true,
       });
-      setMessage(response.message || "posted successfully");
-      console.log(response.message);
+
+      setMessage(response.data.message);
+      setLoader(false);
+      console.log(response.data.message);
     } catch (error) {
       console.log("Full error:", error);
-      setErrorMessage(error.message || "Error posting");
-      console.log("Error response data:", error.response?.data);
+      setErrorMessage(error.response?.data.message);
+
+      console.log(error.response?.data.message);
+    } finally {
+      setLoader(false);
     }
   };
   const handleChange = (e) => {
@@ -188,9 +197,21 @@ export default function AddtoMenu() {
             className="rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-yellow-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
           >
             Post Item
+            {loader && (
+              <img
+                className="animate-spin w-4 inline"
+                src={loading}
+                alt="loader"
+              />
+            )}
           </button>
-          {setMessage && <p>{message}</p>}
-          {setErrorMessage && <p className="text-red-500">{errorMessage}</p>}
+        </div>
+        <div>
+          {message ? (
+            <p className="text-green-500">{message}</p>
+          ) : (
+            errorMessage && <p className="text-red-500">{errorMessage}</p>
+          )}
         </div>
       </form>
     </div>
