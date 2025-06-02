@@ -8,8 +8,8 @@ export default function AddtoMenu() {
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loader, setLoader] = useState(false);
-  // const postURL = "https://eat-right-server.onrender.com/app/add_tomenu";
-  const postURL = "http://localhost:5000/app/add_tomenu";
+  const postURL = "https://eat-right-server.onrender.com/app/add_tomenu";
+  // const postURL = "http://localhost:5000/app/add_tomenu";
 
   const [posted, setPosted] = useState({
     name: "",
